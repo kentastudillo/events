@@ -249,16 +249,16 @@
           });
       },
       saveEvent() {
-        const { event } = this;
+        const self = this;
 
         axios
           .post(
             "/api/v1/events",
             JSON.stringify({
-              name: event.name,
-              start_date: event.startDate,
-              end_date: event.endDate,
-              days: event.days
+              name: self.event.name,
+              start_date: self.event.startDate,
+              end_date: self.event.endDate,
+              days: self.event.days
             }),
             {
               headers: { 'Content-Type': 'application/json' }
@@ -268,13 +268,13 @@
             const { data } = response;
 
             // Clear event
-            Object.keys(event).forEach((key) => {
+            Object.keys(self.event).forEach((key) => {
               self.event[key] = key == 'days' ? [] : '';
             });
 
-            this.$swal('Success!', 'Event has been saved', 'success');
-
             this.addEventsToCalendar([data]);
+
+            this.$swal('Success!', 'Event has been saved', 'success');
           })
           .catch((error) => {
             console.log(`Error: ${error}`);

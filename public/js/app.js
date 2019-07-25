@@ -2095,12 +2095,12 @@ var colors = ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', 
     saveEvent: function saveEvent() {
       var _this2 = this;
 
-      var event = this.event;
+      var self = this;
       axios.post("/api/v1/events", JSON.stringify({
-        name: event.name,
-        start_date: event.startDate,
-        end_date: event.endDate,
-        days: event.days
+        name: self.event.name,
+        start_date: self.event.startDate,
+        end_date: self.event.endDate,
+        days: self.event.days
       }), {
         headers: {
           'Content-Type': 'application/json'
@@ -2108,13 +2108,13 @@ var colors = ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', 
       }).then(function (response) {
         var data = response.data; // Clear event
 
-        Object.keys(event).forEach(function (key) {
+        Object.keys(self.event).forEach(function (key) {
           self.event[key] = key == 'days' ? [] : '';
         });
 
-        _this2.$swal('Success!', 'Event has been saved', 'success');
-
         _this2.addEventsToCalendar([data]);
+
+        _this2.$swal('Success!', 'Event has been saved', 'success');
       })["catch"](function (error) {
         console.log("Error: ".concat(error));
 
