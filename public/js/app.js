@@ -2009,7 +2009,6 @@ var colors = ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     this.fetchEvents();
-    this.$swal('Success!', 'Event has been saved', 'success');
   },
   data: function data() {
     var startDateOfMonth = Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["startOfMonth"])(new Date());

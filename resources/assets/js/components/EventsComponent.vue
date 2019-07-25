@@ -161,7 +161,6 @@
   export default {
     mounted() {
       this.fetchEvents();
-      this.$swal('Success!', 'Event has been saved', 'success');
     },
     data: function() {
       const startDateOfMonth = startOfMonth(new Date());
