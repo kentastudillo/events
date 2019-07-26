@@ -12,10 +12,6 @@ class EventsController extends Controller
     {
         return Event::all();
     }
-    public function show($id)
-    {
-        return Event::findOrFail($id);
-    }
     public function store(Request $request)
     {
         $event = Event::create($request->all());
