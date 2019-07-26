@@ -17,13 +17,9 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-body p-2">
-                        <h2 class="mb-0 font-weight-bold text-center">Calendar</h2>
-                    </div>
-                </div>
+        <div class="card rounded-0">
+            <div class="card-body p-2">
+                <h2 class="mb-0 font-weight-bold text-center">Calendar</h2>
             </div>
         </div>
 
