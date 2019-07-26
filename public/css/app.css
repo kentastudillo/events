@@ -10666,10 +10666,6 @@ a.text-dark:focus {
   border-color: #72C8E1;
 }
 
-.text-pink {
-  color: #F9787C;
-}
-
 .text-gray {
   color: #B7B7BF;
 }
@@ -10682,13 +10678,39 @@ a.text-dark:focus {
   border-bottom: 0;
 }
 
-#from-datepicker-trigger:-moz-read-only,
-#to-datepicker-trigger:-moz-read-only {
+.form-control[readonly] {
   background-color: #FFF;
 }
 
-#from-datepicker-trigger:read-only,
-#to-datepicker-trigger:read-only {
-  background-color: #FFF;
+.vdp-datepicker__calendar {
+  padding: 15px;
+}
+
+.vdp-datepicker__calendar .cell:not(.day-header) {
+  border-left: 1px solid #DDD !important;
+  border-bottom: 1px solid #DDD !important;
+}
+
+.vdp-datepicker__calendar .cell:not(.day-header):hover:not(.blank) {
+  border-color: #DDD !important;
+  background-color: #DDD;
+}
+
+.vdp-datepicker__calendar .cell:nth-child(7n) {
+  border-right: 1px solid #DDD !important;
+}
+
+.vdp-datepicker__calendar .cell.day-header {
+  border-right: 0 !important;
+  border-bottom: 1px solid #DDD !important;
+}
+
+.vdp-datepicker__calendar .cell:last-of-type {
+  border-right: 1px solid #DDD !important;
+}
+
+.vdp-datepicker__calendar .cell.selected {
+  background: #72C8E1 !important;
+  color: #FFF !important;
 }
 

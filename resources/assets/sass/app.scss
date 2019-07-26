@@ -25,10 +25,6 @@
     }
 }
 
-.text-pink {
-    color: #F9787C;
-}
-
 .text-gray {
     color: #B7B7BF;
 }
@@ -40,9 +36,40 @@
     }
 }
 
-#from-datepicker-trigger,
-#to-datepicker-trigger {
-    &:read-only {
+.form-control{
+    &[readonly] {
         background-color: #FFF;
+    }
+}
+
+// Calendar ui override
+.vdp-datepicker__calendar {
+    padding: 15px;
+    .cell {
+        &:not(.day-header) {
+            border-left: 1px solid #DDD !important;
+            border-bottom: 1px solid #DDD !important;
+            &:hover {
+                &:not(.blank) {
+                    border-color: #DDD !important;
+                    background-color: #DDD;
+                }
+            }
+        }
+        &:nth-child(7n) {
+            border-right: 1px solid #DDD !important;
+            // background-color: 'red' !important;
+        }
+        &.day-header {
+            border-right: 0 !important;
+            border-bottom: 1px solid #DDD !important;
+        }
+        &:last-of-type {
+            border-right: 1px solid #DDD !important;
+        }
+        &.selected {
+            background: #72C8E1 !important;
+            color: #FFF !important;
+        }
     }
 }

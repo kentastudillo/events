@@ -16,52 +16,34 @@
               <div class="row">
                 <div class="col-6 form-group">
                   <label class="control-label">From</label>
-                  <input
-                    type="text"
-                    v-model="event.startDate"
-                    class="form-control"
-                    id="from-datepicker-trigger"
-                    autocomplete="false"
-                    readonly
-                    required
-                  />
-                  <AirbnbStyleDatepicker
-                    :trigger-element-id="'from-datepicker-trigger'"
-                    :mode="'single'"
-                    :months-to-show="1"
-                    :fullscreen-mobile="true"
-                    :min-date="calendarMinDate"
-                    :end-date="calendarMaxDate"
-                    :date-one="event.startDate"
-                    @date-one-selected="val => {
+                  <datepicker
+                    :inputClass="'form-control'"
+                    :value="event.startDate"
+                    :disabledDates="{
+                      to: calendarMinDate,
+                      from: calendarMaxDate
+                    }"
+                    :maximumView="'day'"
+                    @selected="val => {
+                      event.startDate = val;
+
                       if (val > event.endDate && event.endDate) {
                         event.endDate = val;
                       }
-
-                      event.startDate = val;
                     }"
                   />
                 </div>
                 <div class="col-6 form-group">
                   <label class="control-label">To</label>
-                  <input
-                    type="text"
-                    v-model="event.endDate"
-                    class="form-control"
-                    id="to-datepicker-trigger"
-                    autocomplete="false"
-                    readonly
-                    required
-                  />
-                  <AirbnbStyleDatepicker
-                    :trigger-element-id="'to-datepicker-trigger'"
-                    :mode="'single'"
-                    :months-to-show="1"
-                    :fullscreen-mobile="true"
-                    :date-one="event.endDate"
-                    :min-date="event.startDate"
-                    :end-date="calendarMaxDate"
-                    @date-one-selected="val => { event.endDate = val }"
+                  <datepicker
+                    :inputClass="'form-control'"
+                    :value="event.endDate"
+                    :disabledDates="{
+                      to: event.startDate || calendarMinDate,
+                      from: calendarMaxDate
+                    }"
+                    :maximumView="'day'"
+                    @selected="val => { event.endDate = val }"
                   />
                 </div>
               </div>
@@ -141,6 +123,7 @@
 </template>
 
 <script>
+  import Datepicker from 'vuejs-datepicker';
   import { format, eachDay, startOfMonth, endOfMonth } from 'date-fns';
 
   const colors = [
@@ -161,6 +144,9 @@
   export default {
     mounted() {
       this.fetchEvents();
+    },
+    components: {
+      Datepicker
     },
     data: function() {
       const startDateOfMonth = startOfMonth(new Date());
@@ -258,8 +244,8 @@
             "/api/v1/events",
             JSON.stringify({
               name: self.event.name,
-              start_date: self.event.startDate,
-              end_date: self.event.endDate,
+              start_date: format(self.event.startDate, 'YYYY-MM-DD'),
+              end_date: format(self.event.endDate, 'YYYY-MM-DD'),
               days: self.event.days
             }),
             {
