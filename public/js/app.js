@@ -2068,7 +2068,8 @@ var colors = ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', 
       events.forEach(function (event) {
         var eventDates = Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["eachDay"])(event.start_date, event.end_date); // Get a random color for background
 
-        event.color = colors[Math.floor(Math.random() * colors.length) + 1];
+        var randomNumber = Math.floor(Math.random() * colors.length);
+        event.color = colors[randomNumber];
         eventDates.forEach(function (date) {
           var dateString = Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["format"])(date, 'YYYY-MM-DD');
           var dateDayName = Object(date_fns__WEBPACK_IMPORTED_MODULE_0__["format"])(date, 'ddd');

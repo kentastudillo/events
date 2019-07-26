@@ -222,7 +222,9 @@
         events.forEach((event) => {
           const eventDates = eachDay(event.start_date, event.end_date);
           // Get a random color for background
-          event.color = colors[Math.floor(Math.random() * colors.length) + 1];
+          const randomNumber = Math.floor(Math.random() * colors.length);
+
+          event.color = colors[randomNumber];
 
           eventDates.forEach((date) => {
             const dateString = format(date, 'YYYY-MM-DD');
